@@ -1,9 +1,11 @@
-package com.bryonnabaines.stackoverflow_user_list;
+package com.bryonnabaines.stackoverflow_user_list.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-import com.bryonnabaines.stackoverflow_user_list.ui.userlist.UserListFragment;
+import com.bryonnabaines.stackoverflow_user_list.R;
+
+import com.bryonnabaines.stackoverflow_user_list.fragments.UserListFragment;
 
 public class MainActivity extends AppCompatActivity {
 

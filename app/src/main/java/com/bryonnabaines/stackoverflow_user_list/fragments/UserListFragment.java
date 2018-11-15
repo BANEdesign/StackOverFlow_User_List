@@ -1,4 +1,4 @@
-package com.bryonnabaines.stackoverflow_user_list.ui.userlist;
+package com.bryonnabaines.stackoverflow_user_list.fragments;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.bryonnabaines.stackoverflow_user_list.R;
+import com.bryonnabaines.stackoverflow_user_list.view_models.UserListViewModel;
 
 public class UserListFragment extends Fragment {
 

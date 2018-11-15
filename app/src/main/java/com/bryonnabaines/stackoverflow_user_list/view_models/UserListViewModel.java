@@ -1,4 +1,4 @@
-package com.bryonnabaines.stackoverflow_user_list.ui.userlist;
+package com.bryonnabaines.stackoverflow_user_list.view_models;
 
 import android.arch.lifecycle.ViewModel;
 
