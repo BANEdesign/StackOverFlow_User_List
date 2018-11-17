@@ -1,5 +1,6 @@
 package com.bryonnabaines.stackoverflow_user_list.fragments;
 
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,9 +21,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     private ArrayList<User> users = new ArrayList<>();
 
-//    public UserListAdapter(ArrayList<User> users) {
-//        this.users = users;
-//    }
+    public UserListAdapter(ArrayList<User> users) {
+        this.users = users;
+    }
 
     public UserListAdapter(){ }
 
@@ -38,10 +39,10 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         Glide.with(holder.itemView)
                 .load(this.users.get(position).getProfile_image())
                 .into(holder.gravatar);
-        holder.username.setText(this.users.get(position).getDisplay_name());
-        holder.bronzeAmount.setText(this.users.get(position).getBronze());
-        holder.silverAmount.setText(this.users.get(position).getSilver());
-        holder.goldAmount.setText(this.users.get(position).getGold());
+        holder.username.setText(String.valueOf(this.users.get(position).getDisplay_name()));
+        holder.bronzeAmount.setText(String.valueOf(this.users.get(position).getBronze()));
+        holder.silverAmount.setText(String.valueOf(this.users.get(position).getSilver()));
+        holder.goldAmount.setText(String.valueOf(this.users.get(position).getGold()));
     }
 
     @Override
@@ -54,11 +55,13 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
     public void setUsers(List<User> users) {
         this.users.addAll(users);
+        this.notifyDataSetChanged();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         //TODO add viewHolders for other fields in User Object
+        private CardView cardView;
         private ImageView gravatar;
         private TextView username;
         private TextView bronzeAmount;
@@ -68,12 +71,12 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
 
+            cardView = itemView.findViewById(R.id.card_view);
             gravatar = itemView.findViewById(R.id.gravatar);
             username = itemView.findViewById(R.id.username);
             bronzeAmount = itemView.findViewById(R.id.bronze_amount);
             silverAmount = itemView.findViewById(R.id.silver_amount);
             goldAmount = itemView.findViewById(R.id.gold_amount);
-
         }
     }
 }

@@ -15,12 +15,7 @@ public class BadgeConverter {
     }
 
     @TypeConverter
-    public static ArrayList<Integer> badgeCounToArrayList(BadgeCount badges) {
-        ArrayList<Integer> badgeList = new ArrayList<>(3);
-        badgeList.add(0, badges.getBronze());
-        badgeList.add( 1, badges.getSilver());
-        badgeList.add(2, badges.getGold());
-
-        return badgeList;
+    public static ArrayList<String> badgeCounToArrayList(BadgeCount badges) {
+        return new ArrayList<>(3);
     }
 }

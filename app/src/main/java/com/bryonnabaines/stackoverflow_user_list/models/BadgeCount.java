@@ -1,37 +1,37 @@
 package com.bryonnabaines.stackoverflow_user_list.models;
 
 public class BadgeCount {
-    public Integer bronze;
-    public Integer silver;
-    public Integer gold;
+    public int bronze;
+    public int silver;
+    public int gold;
 
-    public BadgeCount( Integer bronze, Integer silver, Integer gold){
+    public BadgeCount( int bronze, int silver, int gold){
         this.bronze = bronze;
         this.silver = silver;
         this.gold = gold;
     }
 
-    public Integer getBronze() {
+    public int getBronze() {
         return bronze;
     }
 
-    public void setBronze(Integer bronze) {
+    public void setBronze(int bronze) {
         this.bronze = bronze;
     }
 
-    public Integer getSilver() {
+    public int getSilver() {
         return silver;
     }
 
-    public void setSilver(Integer silver) {
+    public void setSilver(int silver) {
         this.silver = silver;
     }
 
-    public Integer getGold() {
+    public int getGold() {
         return gold;
     }
 
-    public void setGold(Integer gold) {
+    public void setGold(int gold) {
         this.gold = gold;
     }
 }
