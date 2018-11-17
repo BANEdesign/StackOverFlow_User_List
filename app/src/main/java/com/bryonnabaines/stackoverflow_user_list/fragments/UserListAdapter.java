@@ -18,16 +18,13 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
 
 
 
-    private ArrayList<User> users;
-    private static String BRONZE = "bronze";
-    private static String SILVER = "silver";
-    private static String GOLD = "gold";
+    private ArrayList<User> users = new ArrayList<>();
 
-    public UserListAdapter(ArrayList<User> users) {
-        this.users = users;
-    }
+//    public UserListAdapter(ArrayList<User> users) {
+//        this.users = users;
+//    }
 
-    public UserListAdapter(){}
+    public UserListAdapter(){ }
 
     @Override
     public UserListAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -39,17 +36,20 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     public void onBindViewHolder(UserListAdapter.ViewHolder holder, int position) {
 
         Glide.with(holder.itemView)
-                .load(users.get(position).getProfile_image())
+                .load(this.users.get(position).getProfile_image())
                 .into(holder.gravatar);
-        holder.username.setText(users.get(position).getDisplay_name());
-        holder.bronzeAmount.setText(users.get(position).getBadge_counts(BRONZE));
-        holder.silverAmount.setText(users.get(position).getBadge_counts(SILVER));
-        holder.goldAmount.setText(users.get(position).getBadge_counts(GOLD));
+        holder.username.setText(this.users.get(position).getDisplay_name());
+        holder.bronzeAmount.setText(this.users.get(position).getBronze());
+        holder.silverAmount.setText(this.users.get(position).getSilver());
+        holder.goldAmount.setText(this.users.get(position).getGold());
     }
 
     @Override
     public int getItemCount() {
-        return users.size();
+        if(users != null) {
+            return users.size();
+        }else
+            return 0;
     }
 
     public void setUsers(List<User> users) {

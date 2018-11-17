@@ -11,7 +11,6 @@ import com.bryonnabaines.stackoverflow_user_list.fragments.UserListFragment;
 import javax.inject.Inject;
 
 import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
 
@@ -30,19 +29,12 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     }
 
     @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
+    public DispatchingAndroidInjector<Fragment> supportFragmentInjector() {
         return dispatchingAndroidInjector;
     }
 
     private void showFragment(Bundle savedInstanceState){
         if (savedInstanceState == null) {
-            // TODO remove this stuff if we don't need to send anything to fragment/viewModel
-//            UserListFragment fragment = new UserListFragment();
-//            Bundle bundle = new Bundle();
-
-//            bundle.putString(SOMETHING_TO_PASS);
-//            fragment.setArguments(bundle);
-
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, UserListFragment.newInstance())
                     .commitNow();

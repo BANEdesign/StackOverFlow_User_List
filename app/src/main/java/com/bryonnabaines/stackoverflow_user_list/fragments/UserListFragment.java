@@ -64,7 +64,7 @@ public class UserListFragment extends Fragment {
 
     private void configureViewModel(){
         viewModel = ViewModelProviders.of(this, viewModelFactory).get(UserListViewModel.class);
-        // TODO add retrofit and call to getUsers() and
+        viewModel.init();
         viewModel.getUsers().observe(this, users -> userListAdapter.setUsers(users));
     }
 

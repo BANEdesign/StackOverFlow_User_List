@@ -1,23 +1,54 @@
 package com.bryonnabaines.stackoverflow_user_list.models;
 
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
+
+@Entity
 public class User {
 
-    private BadgeCount badge_counts;
+    @PrimaryKey
+    @NonNull
+    @SerializedName("user_id")
+    @Expose
     private int user_id;
+
+    @SerializedName("bronze")
+    @Expose
+    private int bronze;
+
+    @SerializedName("silver")
+    @Expose
+    private int silver;
+
+    @SerializedName("gold")
+    @Expose
+    private int gold;
+
+    @SerializedName("profile_image")
+    @Expose
     private String profile_image;
+
+    @SerializedName("display_name")
+    @Expose
     private String display_name;
+
+    @SerializedName("location")
+    @Expose
     private String location;
 
-    private boolean followed = false;
-    private boolean blocked = false;
-
-    public User(BadgeCount badge_counts, int id, String name, String location) {
-        this.badge_counts = badge_counts;
-        this.user_id = id;
-        this.display_name = name;
+    public User(int user_id, int bronze, int silver, int gold, String profile_image, String display_name, String location) {
+        this.bronze = bronze;
+        this.silver = silver;
+        this.gold = gold;
+        this.user_id = user_id;
+        this.display_name = display_name;
         this.location = location;
+        this.profile_image = profile_image;
     }
-
 
     public int getUser_id() {
         return user_id;
@@ -51,69 +82,48 @@ public class User {
         this.location = location;
     }
 
-    public boolean isFollowed() {
-        return followed;
+    public int getBronze() {
+        return bronze;
     }
 
-    public void setFollowed(boolean followed) {
-        this.followed = followed;
+    public void setBronze(int bronze) {
+        this.bronze = bronze;
     }
 
-    public boolean isBlocked() {
-        return blocked;
+    public int getSilver() {
+        return silver;
     }
 
-    public void setBlocked(boolean blocked) {
-        this.blocked = blocked;
+    public void setSilver(int silver) {
+        this.silver = silver;
     }
 
-    public Integer getBadge_counts(String type) {
-        switch (type){
-            case "bronze" : return badge_counts.getBronze();
-            case "silver" : return badge_counts.getSilver();
-            case "gold" : return badge_counts.getGold();
-            default : return 0;
-        }
+    public int getGold() {
+        return gold;
     }
 
-    public void setBadge_counts(BadgeCount badge_counts) {
-        this.badge_counts = badge_counts;
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
-    private class BadgeCount {
-        public Integer bronze;
-        public Integer silver;
-        public Integer gold;
+//    public Integer getBadge_counts(String type) {
+//        switch (type){
+//            case "bronze" : return badge_counts.get(0);
+//            case "silver" : return badge_counts.get(1);
+//            case "gold" : return badge_counts.get(2);
+//            default : return 0;
+//        }
+//    }
+//
+//    public void setBadge_counts(BadgeCount badge_counts) {
+//        ArrayList<Integer> badgeList = new ArrayList<>(3);
+//        badgeList.add(0,badge_counts.getBronze());
+//        badgeList.add(1, badge_counts.getSilver());
+//        badgeList.add(2, badge_counts.getGold());
+//        this.badge_counts = badgeList;
+//    }
 
-        public BadgeCount( Integer bronze, Integer silver, Integer gold){
-            this.bronze = bronze;
-            this.silver = silver;
-            this.gold = gold;
-        }
 
-        public Integer getBronze() {
-            return bronze;
-        }
 
-        public void setBronze(Integer bronze) {
-            this.bronze = bronze;
-        }
-
-        public Integer getSilver() {
-            return silver;
-        }
-
-        public void setSilver(Integer silver) {
-            this.silver = silver;
-        }
-
-        public Integer getGold() {
-            return gold;
-        }
-
-        public void setGold(Integer gold) {
-            this.gold = gold;
-        }
-    }
 }
 
