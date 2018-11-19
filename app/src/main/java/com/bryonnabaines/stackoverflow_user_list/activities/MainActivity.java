@@ -1,8 +1,13 @@
 package com.bryonnabaines.stackoverflow_user_list.activities;
 
+import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.AttributeSet;
+import android.view.View;
+import android.widget.ProgressBar;
 
 import com.bryonnabaines.stackoverflow_user_list.R;
 
@@ -16,6 +21,9 @@ import dagger.android.support.HasSupportFragmentInjector;
 
 public class MainActivity extends AppCompatActivity implements HasSupportFragmentInjector {
 
+
+    ProgressBar progressSpinner;
+
     @Inject
     DispatchingAndroidInjector<Fragment> dispatchingAndroidInjector;
 
@@ -24,6 +32,9 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressSpinner = this.findViewById(R.id.progressBar);
+        progressSpinner.setVisibility(View.VISIBLE);
+        progressSpinner.setIndeterminate(true);
         this.configureDagger();
         this.showFragment(savedInstanceState);
     }
@@ -34,11 +45,13 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
     }
 
     private void showFragment(Bundle savedInstanceState){
+
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.fragment_container, UserListFragment.newInstance())
                     .commitNow();
         }
+        progressSpinner.setIndeterminate(false);
     }
 
     private void configureDagger(){

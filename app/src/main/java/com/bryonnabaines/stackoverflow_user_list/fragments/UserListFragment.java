@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.bryonnabaines.stackoverflow_user_list.R;
 import com.bryonnabaines.stackoverflow_user_list.view_models.UserListViewModel;
@@ -45,7 +46,6 @@ public class UserListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         recyclerView = view.findViewById(R.id.userlist);
         setupAdapter();
     }
