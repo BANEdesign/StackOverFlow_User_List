@@ -1,6 +1,12 @@
 # StackOverFlow_User_List
 Fetches a list of StackOverflow users, then stores and displays them in a RecyclerView with Retrofit and Room
 
+<p align="center">
+<img src="https://github.com/BANEdesign/StackOverFlow_User_List/blob/master/screenshots/app_screenShot.png" alt="Drawing" width="200" height="400"/>
+</p>  
+
+
+
 ### Architecture Components
 This application implements the following concepts :
 - MVVM
