@@ -29,8 +29,7 @@
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="50dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/badge_circle_icon" />
+                android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/username"
@@ -38,10 +37,12 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBaseline="@id/gravatar"
                 android:layout_marginStart="26dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
                 android:layout_toEndOf="@id/gravatar"
-                android:text="Username" />
+                android:text="Username"
+                android:textSize="18sp"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/bronze_icon"

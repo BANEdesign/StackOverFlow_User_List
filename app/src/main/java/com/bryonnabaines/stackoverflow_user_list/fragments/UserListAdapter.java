@@ -36,13 +36,14 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
     @Override
     public void onBindViewHolder(UserListAdapter.ViewHolder holder, int position) {
 
+        User user = this.users.get(position);
         Glide.with(holder.itemView)
-                .load(this.users.get(position).getProfile_image())
+                .load(user.profile_image)
                 .into(holder.gravatar);
-        holder.username.setText(String.valueOf(this.users.get(position).getDisplay_name()));
-        holder.bronzeAmount.setText(String.valueOf(this.users.get(position).getBronze()));
-        holder.silverAmount.setText(String.valueOf(this.users.get(position).getSilver()));
-        holder.goldAmount.setText(String.valueOf(this.users.get(position).getGold()));
+        holder.username.setText(String.valueOf(user.display_name));
+        holder.bronzeAmount.setText(String.valueOf(user.badge_counts.bronze));
+        holder.silverAmount.setText(String.valueOf(user.badge_counts.silver));
+        holder.goldAmount.setText(String.valueOf(user.badge_counts.gold));
     }
 
     @Override
@@ -53,14 +54,9 @@ public class UserListAdapter extends RecyclerView.Adapter<UserListAdapter.ViewHo
             return 0;
     }
 
-    public void setUsers(List<User> users) {
-        this.users.addAll(users);
-        this.notifyDataSetChanged();
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        //TODO add viewHolders for other fields in User Object
+        //TODO add viewHolders for location field
         private CardView cardView;
         private ImageView gravatar;
         private TextView username;

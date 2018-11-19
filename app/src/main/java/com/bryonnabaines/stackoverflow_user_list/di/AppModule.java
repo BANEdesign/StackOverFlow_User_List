@@ -1,7 +1,10 @@
 package com.bryonnabaines.stackoverflow_user_list.di;
 
 import android.app.Application;
+import android.arch.persistence.db.SupportSQLiteDatabase;
 import android.arch.persistence.room.Room;
+import android.arch.persistence.room.migration.Migration;
+import android.support.annotation.NonNull;
 
 import com.bryonnabaines.stackoverflow_user_list.api.UserService;
 import com.bryonnabaines.stackoverflow_user_list.database.UserDao;
@@ -22,6 +25,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 @Module(includes = ViewModelModule.class)
 public class AppModule {
+    // Took a few tries before I found the proper design for the db to accept the json
+    static final Migration MIGRATION_5_6 = new Migration(5, 6) {
+        @Override
+        public void migrate(@NonNull SupportSQLiteDatabase database) {
+            database.execSQL(" DROP TABLE `user`");
+            database.execSQL("CREATE TABLE `User` (`user_id` INTEGER NOT NULL, " +
+                    "`badge_countsbronze` INTEGER, " +
+                    "`badge_countssilver` INTEGER, `badge_countsgold` INTEGER, `profile_image` TEXT, " +
+                    "`display_name` TEXT, `location` TEXT, PRIMARY KEY(`user_id`))");
+        }
+    };
 
     // --- DATABASE INJECTION ---
 
@@ -30,6 +44,7 @@ public class AppModule {
     UserDatabase provideDatabase(Application application) {
         return Room.databaseBuilder(application,
                 UserDatabase.class, "MyDatabase.db")
+                .addMigrations(MIGRATION_5_6)
                 .build();
     }
 

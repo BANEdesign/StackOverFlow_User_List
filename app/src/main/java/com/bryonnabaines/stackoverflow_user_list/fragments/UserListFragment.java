@@ -63,7 +63,7 @@ public class UserListFragment extends Fragment {
     private void setupAdapter(){
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(new UserListAdapter());
+        recyclerView.setAdapter(userListAdapter);
     }
 
     private void configureViewModel(){
@@ -71,7 +71,6 @@ public class UserListFragment extends Fragment {
         viewModel.init();
         viewModel.getUsers().observe(this, users ->
                 recyclerView.setAdapter(new UserListAdapter(new ArrayList<>(users))));
-//        viewModel.getUsers().observe(this, users -> userListAdapter.setUsers(users));
     }
 
     private void configureDagger(){

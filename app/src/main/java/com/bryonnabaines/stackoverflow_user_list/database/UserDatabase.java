@@ -6,7 +6,7 @@ import android.arch.persistence.room.TypeConverters;
 
 import com.bryonnabaines.stackoverflow_user_list.models.User;
 
-@Database(entities = {User.class}, version = 1)
+@Database(entities = {User.class}, version = 6)
 @TypeConverters(BadgeConverter.class)
 public abstract class UserDatabase extends RoomDatabase {
 

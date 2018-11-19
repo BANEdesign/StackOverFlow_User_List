@@ -40,29 +40,31 @@ public class UsersRepository {
     // ---
 
     public LiveData<List<User>> getUsers() {
-    // TODO add check if users have been downloaded
+    // TODO add check if users have been downloaded it hasUsers() query
         refreshUser();
         return userDao.load(); // return a LiveData directly from the database.
+
     }
 
     private void refreshUser() {
-                userService.getUsers().enqueue(new Callback<UserList>() {
-                    @Override
-                    public void onResponse(@NonNull Call<UserList> call, @NonNull Response<UserList> response) {
-                        Log.d("TAG", "DATA REFRESHED FROM NETWORK");
-                            if (response.isSuccessful()) {
-                                assert response.body() != null;
-                                Observable.just(response.body())
-                                        .subscribeOn(Schedulers.io())
-                                        .subscribe( users -> userDao.insertAll(users.getItems()));
-                            }
-                    }
 
-                    @Override
-                    public void onFailure(Call<UserList> call, Throwable t) {
-                        Log.e("TAG", "ERROR FETCHING DATA");
-                    }
-                });
+        userService.getUsers().enqueue(new Callback<UserList>() {
+            @Override
+            public void onResponse(@NonNull Call<UserList> call, @NonNull Response<UserList> response) {
+                Log.d("TAG", "DATA REFRESHED FROM NETWORK");
+                if (response.isSuccessful()) {
+                    assert response.body() != null;
+                    Observable.just(response.body())
+                            .subscribeOn(Schedulers.io())
+                            .subscribe(users -> userDao.insertAll(users.getItems()));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<UserList> call, Throwable t) {
+                Log.e("TAG", "ERROR FETCHING DATA");
+            }
+        });
     }
 }
 
